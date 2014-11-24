@@ -105,8 +105,24 @@ FormUploader.prototype = {
   },
   getFile: function(req, res) {
     var filename = req.params.filename;
-    console.log(filename);
+    logger.log(filename);
     res.sendFile(path.join(this.tmpDir, filename));
+  },
+  deleteFile: function(req, res) {
+    var filename = req.params.filename;
+    logger.info(filename + ' deleted!');
+    var filePath = path.join(this.tmpDir, filename);
+    fs.unlink(filePath, function(err) {
+      if(err) {
+        res.json(500, {
+          msg: 'fail to delete file, due to' + err.message
+        });
+      } else {
+        res.json({
+          msg: 'ok'
+        });
+      }
+    })
   }
 };
 
@@ -116,5 +132,6 @@ router.post('/upload', formUploader.middleware.bind(formUploader), formUploader.
 router.put('/simple/upload', formUploader.simpleUploader.bind(formUploader));
 router.get('/list', formUploader.list.bind(formUploader));
 router.get('/file/:filename', formUploader.getFile.bind(formUploader));
+router.delete('/file/:filename', formUploader.deleteFile.bind(formUploader));
 
 module.exports = router;

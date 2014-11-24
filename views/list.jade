@@ -12,7 +12,15 @@ block content
           a(href='/list') File List
 
   div.container
-    ul.list-group
+    div.alert.alert-warning.alert-dismissable#listAlert
+      button(type='button').close
+        span(aria-hidden='true') &times;
+        span.sr-only Close
+      span
+        strong Error!
+        | Fail to delete file
+    ul.list-group#fileList
       each filename in files
         li.list-group-item
+          button.btn.btn-danger DELETE
           a(href=filename)= filename
