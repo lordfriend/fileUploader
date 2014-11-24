@@ -1,0 +1,13 @@
+{
+  "apps": [
+    {
+      "name": "fileUploader",
+      "script": "./bin/www.js",
+      "exec_mode": "fork_mode",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": 80
+      }
+    }
+  ]
+}
