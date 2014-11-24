@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  nav.navbar.navbar-default
+    div.container
+      div.navbar-header
+        a.navbar-brand(href='#') Uploader Test
+      ul.nav.navbar-nav
+        li.active
+          a(href='/') Home
+        li
+          a(href='/list') File List
+
+  div.container
+    form.form-horizontal(action='/upload', method='POST', enctype='multipart/form-data')
+      div.form-group
+        label(for='upload').col-sm-4 Choose File To Upload
+        div.col-sm-8
+          input(type='file', id='upload', name='upload')
+      div.form-group
+        div.col-sm-offset-4.col-sm-8
+          button(type='submit').btn.btn-default Upload Now!

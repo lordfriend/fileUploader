@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  nav.navbar.navbar-default
+    div.container
+      div.navbar-header
+        a.navbar-brand(href='/') Uploader Test
+      ul.nav.navbar-nav
+        li
+          a(href='/') Home
+        li.active
+          a(href='/list') File List
+
+  div.container
+    ul.list-group
+      each filename in files
+        li.list-group-item
+          a(href=filename)= filename
