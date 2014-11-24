@@ -2,7 +2,7 @@
   "apps": [
     {
       "name": "fileUploader",
-      "script": "./bin/www.js",
+      "script": "./bin/www",
       "exec_mode": "fork_mode",
       "env": {
         "NODE_ENV": "production",
