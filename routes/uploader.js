@@ -69,11 +69,18 @@ FormUploader.prototype = {
   },
 
   uploadHandler: function(req, res) {
-    var filePath = req.file.path;
-    var fileName = path.basename(filePath);
-    res.json({
-      url: 'http://' + domain + '/files/'+ fileName
-    });
+    var file = req.file;
+    if(file) {
+      var fileName = path.basename(file.path);
+      res.json({
+        url: 'http://' + domain + '/files/'+ fileName
+      });
+    } else {
+      res.json(400, {
+        msg: 'no file parsed'
+      });
+    }
+
   },
 
   simpleUploader: function(req, res) {
