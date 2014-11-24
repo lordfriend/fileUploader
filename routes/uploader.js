@@ -13,7 +13,7 @@ var uuid = require('node-uuid'),
   });
 
 
-var domain = 'fooreader.com';
+var domain = 'point.moe';
 
 function FormUploader() {
   if(!(this instanceof FormUploader)) {
