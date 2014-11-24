@@ -81,7 +81,7 @@ FormUploader.prototype = {
     var filePath = path.join(this.tmpDir, fileName);
     var out = fs.createWriteStream(filePath);
 
-    req.on('end', function() {
+    out.on('finish', function() {
       res.json({
         url: 'http://' + domain + '/files/'+ fileName
       });
