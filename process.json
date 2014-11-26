@@ -6,7 +6,8 @@
       "exec_mode": "fork_mode",
       "env": {
         "NODE_ENV": "production",
-        "PORT": 80
+        "PORT": 80,
+        "DOMAIN": "point.moe"
       }
     }
   ]

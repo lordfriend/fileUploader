@@ -13,7 +13,7 @@ var uuid = require('node-uuid'),
   });
 
 
-var domain = 'point.moe';
+var domain = process.env.DOMAIN || 'localhost:3000';
 
 function FormUploader() {
   if(!(this instanceof FormUploader)) {
@@ -49,7 +49,9 @@ FormUploader.prototype = {
     });
 
     form.on('fileBegin', function(name, file) {
-      logger.debug('event "fileBegin"', name + ': ' + file);
+      //logger.debug('event "fileBegin"', name + ': ' + file);
+      logger.debug('event "fileBegin"', name + ': ' + file.name);
+      file.path = path.join(form.uploadDir, file.name);
     });
     form.on('file', function(name, file) {
       logger.debug('event "file"', name);
@@ -73,7 +75,7 @@ FormUploader.prototype = {
     if(file) {
       var fileName = path.basename(file.path);
       res.json({
-        url: 'http://' + domain + '/files/'+ fileName
+        url: 'http://' + domain + '/file/'+ fileName
       });
     } else {
       res.json(400, {
@@ -90,7 +92,7 @@ FormUploader.prototype = {
 
     out.on('finish', function() {
       res.json({
-        url: 'http://' + domain + '/files/'+ fileName
+        url: 'http://' + domain + '/file/'+ fileName
       });
     });
     req.pipe(out);
