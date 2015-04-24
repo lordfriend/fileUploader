@@ -27,6 +27,18 @@ respond a json object contains file url. e.g.
     "url": "http://example.com/file/hash-123456asdfghjkl"
 }
 ```
+###/list-files
+
+`GET`
+
+respond an array of files
+```json
+[
+    {"url": "http://example.com/file/hash-123456asdfghjkl"},
+    {"url": "http://example.com/file/hash-8765120adfloewo"},
+    ....
+]
+``
 
 ###/file/:filename
 
