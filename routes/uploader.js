@@ -105,6 +105,19 @@ FormUploader.prototype = {
       res.render('list', {files: files});
     });
   },
+  listFiles: function(req, res) {
+    var fileArray;
+    fs.readdir(this.tmpDir, function(err, files) {
+      if(err) {
+        res.json([]);
+        return;
+      }
+      fileArray = files.map(function(filename) {
+        return {url:'http://' + domain + '/file/' + filename};
+      });
+      res.json(fileArray);
+    });
+  },
   getFile: function(req, res) {
     var filename = req.params.filename;
     logger.log(filename);
@@ -135,5 +148,6 @@ router.put('/simple/upload', formUploader.simpleUploader.bind(formUploader));
 router.get('/list', formUploader.list.bind(formUploader));
 router.get('/file/:filename', formUploader.getFile.bind(formUploader));
 router.delete('/file/:filename', formUploader.deleteFile.bind(formUploader));
+router.get('/list-files', formUploader.listFiles.bind(formUploader));
 
 module.exports = router;
