@@ -36,7 +36,7 @@ respond an array of files
 [
     {"url": "http://example.com/file/hash-123456asdfghjkl"},
     {"url": "http://example.com/file/hash-8765120adfloewo"},
-    ....
+    // and more ....
 ]
 ``
 
